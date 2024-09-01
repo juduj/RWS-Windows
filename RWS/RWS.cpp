@@ -3,6 +3,18 @@
 #include <string>
 #include <algorithm>
 
+std::string GetClipboardText();
+bool SetClipboardText(std::string clipBoardText);
+std::string RemoveWhiteSpace(std::string clipboardText);
+
+int main() {
+
+    std::string clipboardText = GetClipboardText();
+    SetClipboardText(RemoveWhiteSpace(clipboardText));
+    return 0;
+}
+
+
 std::string GetClipboardText() {
     if (!OpenClipboard(nullptr)) {
         std::cerr << "Failed to open clipboard" << std::endl;
@@ -82,11 +94,4 @@ std::string RemoveWhiteSpace(std::string clipboardText)
     clipboardText.erase(end_pos, clipboardText.end());
 
     return clipboardText;
-}
-
-int main() {
-
-    std::string clipboardText = GetClipboardText();
-    SetClipboardText(RemoveWhiteSpace(clipboardText));
-    return 0;
 }
